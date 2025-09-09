@@ -1,4 +1,4 @@
-## observatory.js
+# observatory.js
 
 Light-weight, fast external addon framework
 
