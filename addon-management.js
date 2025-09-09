@@ -1,6 +1,6 @@
 import { AddonBase, EventRegistrar } from "./addon-base.js";
 
-class AddonManager {
+export class AddonManager {
   constructor() {
     /** @type {AddonBase[]} */
     this.enabledAddons = [];
