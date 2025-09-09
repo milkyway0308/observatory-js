@@ -32,7 +32,7 @@ export class AddonManager {
    * @returns {AddonBase|undefined} Found addon or undefined
    */
   findEnabledAddon(addonName) {
-    for (let addon of this.enableAddon) {
+    for (let addon of this.enabledAddons) {
       if (addon.getName() === addonName) {
         return addon;
       }
@@ -66,7 +66,7 @@ export class AddonManager {
    * @returns {Promise<AddonBase|Error>} Loaded addon or error
    */
   async loadAddon(addonUrl) {
-    const addon = await importAddon(addonUrl);
+    const addon = await this.importAddon(addonUrl);
     if (addon instanceof AddonBase) {
       addons += addon;
     }
@@ -79,7 +79,7 @@ export class AddonManager {
    * @returns {Promise<AddonBase|Error>} Loaded addon or error
    */
   async enableAddon(addonUrl) {
-    const addon = await importAddon(addonUrl);
+    const addon = await this.importAddon(addonUrl);
     if (addon instanceof AddonBase) {
       if (this.findEnabledAddon(addon)) {
         return new Error(`Already enabled (${addon.getName()})`);
@@ -87,7 +87,7 @@ export class AddonManager {
       if (!this.findAddon(addon)) {
         this.addons += addon;
       }
-      this.enableAddon += addon;
+      this.enabledAddons += addon;
       addon.onInit(new AddonEvent(), registrar, doesInitCalled);
     }
     return addon;
@@ -104,7 +104,7 @@ export class AddonManager {
       return false;
     }
     addon.onDisable(registrar);
-    this.enableAddon.splice(index, 1);
+    this.enabledAddons.splice(index, 1);
     return true;
   }
 
