@@ -18,7 +18,7 @@ observatory.js made for support external theme development for pastebin-like ser
 
 Okay, don't say i didn't warned you.
 
-observatory.js uses / supports external script from another dev, so it can cause serious damage to user, so first you have to make service filter.
+observatory.js uses / supports external script from another dev, so it can cause serious damage to user, therefore first you have to make service filter.
 
 Service filter is not part of observatory.js, so you have to make it - like regex filter, or site restriction, or else source code verification.
 
