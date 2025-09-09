@@ -68,7 +68,7 @@ export class AddonManager {
   async loadAddon(addonUrl) {
     const addon = await this.importAddon(addonUrl);
     if (addon instanceof AddonBase) {
-      addons.push(addon);
+      this.addons.push(addon);
     }
     return addon;
   }
