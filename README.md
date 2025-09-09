@@ -2,19 +2,19 @@
 
 Light-weight, fast external addon framework
 
-### What is this?
+## What is this?
 
 observatory.js is addon framework supports external imported addon with no additional dependency.
 
 It's similar with Minecraft Plugin logic.
 
-### Why I have to use it?
+## Why I have to use it?
 
 No, you don't need it probably.
 
 observatory.js made for support external theme development for pastebin-like services.
 
-### What if I HAVE TO use it?
+## What if I HAVE TO use it?
 
 Okay, don't say i didn't warned you.
 
@@ -24,7 +24,7 @@ Service filter is not part of observatory.js, so you have to make it - like rege
 
 If service use this addon for self-developed addon system, it's fine to not use them.
 
-### How can I make addon with it?
+## How can I make addon with it?
 
 You have to include observatory.js at your public asset, or use CDN with it.
 
