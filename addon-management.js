@@ -107,4 +107,8 @@ export class AddonManager {
     this.enableAddon.splice(index, 1);
     return true;
   }
+
+  callInit() {
+    this.registrar.callInit();
+  }
 }
