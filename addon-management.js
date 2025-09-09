@@ -1,4 +1,4 @@
-import { AddonBase, EventRegistrar } from "./addon-base.js";
+import { AddonBase, AddonEvent, EventRegistrar } from "./addon-base.js";
 
 export class AddonManager {
   constructor() {
@@ -88,7 +88,7 @@ export class AddonManager {
         this.addons += addon;
       }
       this.enabledAddons += addon;
-      addon.onInit(new AddonEvent(), registrar, doesInitCalled);
+      addon.onInit(new AddonEvent(), this.registrar, this.doesInitCalled);
     }
     return addon;
   }
