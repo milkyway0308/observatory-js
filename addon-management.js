@@ -68,7 +68,7 @@ export class AddonManager {
   async loadAddon(addonUrl) {
     const addon = await this.importAddon(addonUrl);
     if (addon instanceof AddonBase) {
-      addons += addon;
+      addons.push(addon);
     }
     return addon;
   }
@@ -85,9 +85,9 @@ export class AddonManager {
         return new Error(`Already enabled (${addon.getName()})`);
       }
       if (!this.findAddon(addon)) {
-        this.addons += addon;
+        this.addons.push(addon);
       }
-      this.enabledAddons += addon;
+      this.enabledAddons.push(addon);
       addon.onInit(new AddonEvent(), this.registrar, this.doesInitCalled);
     }
     return addon;
