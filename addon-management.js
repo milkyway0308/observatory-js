@@ -13,6 +13,24 @@ export class AddonManager {
   }
 
   /**
+   * Filter URL. If it's not implemented by addon, all url will be accepted.
+   * @param {string} addonUrl Target URL
+   * @returns {boolean} URL state (true if granted, false if rejected)
+   */
+  filterUrl(addonUrl) {
+    return true;
+  }
+
+  /**
+   * Filter addon. If 'false' returned, addon will not enabled.
+   * @param {AddonBase} addon Target addon
+   * @returns {boolean} Addon state (true if granted, false if rejected)
+   */
+  filterAddon(addon) {
+    return true;
+  }
+
+  /**
    * Find loaded addon.
    * @param {string} addonName Target addon name
    * @returns {AddonBase|undefined} Found addon or undefined
@@ -47,6 +65,9 @@ export class AddonManager {
    */
   async importAddon(addonUrl) {
     try {
+      if (!this.filterUrl(addonUrl)) {
+        return new Error("Permission denied");
+      }
       const loaded = await import(addonUrl);
       if (!loaded.default) {
         return new Error("No exported module found");
@@ -86,6 +107,9 @@ export class AddonManager {
       }
       if (!this.findAddon(addon)) {
         this.addons.push(addon);
+      }
+      if (!this.filterAddon(addon)) {
+        return new Error("Addon init permission denied");
       }
       this.enabledAddons.push(addon);
       addon.onInit(new AddonEvent(), this.registrar, this.doesInitCalled);
